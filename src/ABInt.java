@@ -19,12 +19,7 @@ public class ABInt{ // Arbol binario de enteros
 	// AQUI VAN LOS METODOS...
 	void agregar(int elem) {
 		raiz = agregar(raiz,elem);
-			
 		if(!pertenece(elem));
-
-		throw new RuntimeException("Method Not Implemented yet");
-
-
 	}
 	
 	boolean pertenece(int elem) {
@@ -40,10 +35,8 @@ public class ABInt{ // Arbol binario de enteros
 		throw new RuntimeException("Method Not Implemented yet");
 	}
 	int cantNodos() {
-		if(raiz==null)
-			return 1;
-		else 
-			return cantNodos(raiz);
+
+		return cantNodos(raiz);
 		// throw new RuntimeException("Method Not Implemented yet");
 	}
 	
@@ -75,15 +68,11 @@ public class ABInt{ // Arbol binario de enteros
 		return nodo;
 	}
 	private int cantNodos(ABInt.NodoInt nodo) {
-	
-		if(nodo.der!=null)
-			cantNodos(nodo.der);
-
-		if(nodo.izq!=null)
-			cantNodos(nodo.izq);
-
-
-		return 1;
+		if(nodo==null)
+			{
+				return 0;
+			}
+		return 1 + cantNodos(nodo.der) + cantNodos(nodo.izq);
 	}
 
 	private boolean pertenece(ABInt.NodoInt nodo, int elem) {
