@@ -120,8 +120,18 @@ public class ABInt{ // Arbol binario de enteros
 	private int maximo(ABInt.NodoInt nodo) {
 		if(nodo==null)
 			throw new RuntimeException("Esto no puede pasar");
-		
-		return Math.max(nodo.elem,Math.max(maximo(nodo.der),maximo(nodo.izq)));
+
+		if(esHoja(nodo))
+			return nodo.elem;
+
+		if(nodo.der == null)
+			return Math.max(nodo.elem,maximo(nodo.izq));
+		else
+			if(nodo.izq ==null)
+			return Math.max(nodo.elem,(maximo(nodo.der)));
+
+		return Math.max(nodo.elem,Math.min(maximo(nodo.der),maximo(nodo.izq)));
+	}
 	}
 	@Override
 	public String toString() {
