@@ -21,12 +21,9 @@ public class ABInt{ // Arbol binario de enteros
 		raiz = agregar(raiz,elem);
 		if(!pertenece(elem));
 	}
-	
 	boolean pertenece(int elem) {
 		return pertenece(raiz,elem);
 	}
-
-
 	void quitar(int elem) {
 		// DESAFIO
 		throw new RuntimeException("Method Not Implemented yet");
@@ -36,13 +33,10 @@ public class ABInt{ // Arbol binario de enteros
 		return cantNodos(raiz);
 		// throw new RuntimeException("Method Not Implemented yet");
 	}
-	
-
 	int altura() {
 		return altura(raiz);
 	//	throw new RuntimeException("Method Not Implemented yet");
 	}
-
 	boolean estaBalanceado() {
 		throw new RuntimeException("Method Not Implemented yet");
 	}
@@ -76,7 +70,6 @@ public class ABInt{ // Arbol binario de enteros
 			}
 		return 1 + cantNodos(nodo.der) + cantNodos(nodo.izq);
 	}
-
 	private boolean pertenece(ABInt.NodoInt nodo, int elem) {
 		if(nodo==null){
 			return false;
@@ -87,14 +80,12 @@ public class ABInt{ // Arbol binario de enteros
 			}
 		return pertenece(nodo.izq, elem) || pertenece(nodo.der, elem);
 	}
-
 	private int altura(ABInt.NodoInt nodo) {
 		if(nodo==null){
 			return 0;
 		}
 		return 1 + Math.max(altura(nodo.der),altura(nodo.izq));
 	}
-
 	private int minimo(ABInt.NodoInt nodo) {
 		if(nodo==null)
 			throw new RuntimeException("Esto no puede pasar");
@@ -109,14 +100,11 @@ public class ABInt{ // Arbol binario de enteros
 			return Math.min(nodo.elem,(minimo(nodo.der)));
 
 		return Math.min(nodo.elem,Math.min(minimo(nodo.der),minimo(nodo.izq)));
-	}
-
-	
+	}	
 	private boolean esHoja(ABInt.NodoInt nodo) {
 
 		return nodo.der == null && nodo.izq == null;
 	}
-
 	private int maximo(ABInt.NodoInt nodo) {
 		if(nodo==null)
 			throw new RuntimeException("Esto no puede pasar");
@@ -132,7 +120,7 @@ public class ABInt{ // Arbol binario de enteros
 
 		return Math.max(nodo.elem,Math.min(maximo(nodo.der),maximo(nodo.izq)));
 	}
-	}
+	
 	@Override
 	public String toString() {
 		return "Method Not Implemented yet";
