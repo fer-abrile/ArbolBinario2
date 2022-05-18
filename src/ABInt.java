@@ -23,9 +23,6 @@ public class ABInt{ // Arbol binario de enteros
 	}
 	
 	boolean pertenece(int elem) {
-		if(raiz==null){
-			return false;
-		}
 		return pertenece(raiz,elem);
 	}
 
@@ -42,18 +39,23 @@ public class ABInt{ // Arbol binario de enteros
 	
 
 	int altura() {
-		throw new RuntimeException("Method Not Implemented yet");
+		return altura(raiz);
+	//	throw new RuntimeException("Method Not Implemented yet");
 	}
+
 	boolean estaBalanceado() {
 		throw new RuntimeException("Method Not Implemented yet");
 	}
 	int minimo() {
-		throw new RuntimeException("Method Not Implemented yet");
+		return minimo(raiz);
+		//		throw new RuntimeException("Method Not Implemented yet");
 	}
 	int maximo() {
-		throw new RuntimeException("Method Not Implemented yet");
+		return maximo(raiz);
+		//throw new RuntimeException("Method Not Implemented yet");
 	}
 	
+
 
 
 	private ABInt.NodoInt agregar(ABInt.NodoInt nodo, int elem) {
@@ -76,10 +78,51 @@ public class ABInt{ // Arbol binario de enteros
 	}
 
 	private boolean pertenece(ABInt.NodoInt nodo, int elem) {
-
-		return false;
+		if(nodo==null){
+			return false;
+		}
+		if(nodo.elem == elem)
+			{
+				return true;
+			}
+		return pertenece(nodo.izq, elem) || pertenece(nodo.der, elem);
 	}
 
+	private int altura(ABInt.NodoInt nodo) {
+		if(nodo==null){
+			return 0;
+		}
+		return 1 + Math.max(altura(nodo.der),altura(nodo.izq));
+	}
+
+	private int minimo(ABInt.NodoInt nodo) {
+		if(nodo==null)
+			throw new RuntimeException("Esto no puede pasar");
+
+		if(esHoja(nodo))
+			return nodo.elem;
+
+		if(nodo.der == null)
+			return Math.min(nodo.elem,minimo(nodo.izq));
+		else
+			if(nodo.izq ==null)
+			return Math.min(nodo.elem,(minimo(nodo.der)));
+
+		return Math.min(nodo.elem,Math.min(minimo(nodo.der),minimo(nodo.izq)));
+	}
+
+	
+	private boolean esHoja(ABInt.NodoInt nodo) {
+
+		return nodo.der == null && nodo.izq == null;
+	}
+
+	private int maximo(ABInt.NodoInt nodo) {
+		if(nodo==null)
+			throw new RuntimeException("Esto no puede pasar");
+		
+		return Math.max(nodo.elem,Math.max(maximo(nodo.der),maximo(nodo.izq)));
+	}
 	@Override
 	public String toString() {
 		return "Method Not Implemented yet";
